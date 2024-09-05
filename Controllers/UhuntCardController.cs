@@ -25,7 +25,7 @@ namespace MyUhuntCard.Controllers
 
                 string UserID = (await response.GetUserIDAsync(Username)).Value;
                 Card myCard = new Card();
-                return base.Content(myCard.GetCard((await response.GetAcceptedAsync(UserID)).Value.ToString(), Username), "text/html");
+                return base.Content(myCard.GetCard((await response.GetAcceptedAsync(UserID)).Value.ToString(), Username), "image/svg+xml");
             }
             catch
             {
