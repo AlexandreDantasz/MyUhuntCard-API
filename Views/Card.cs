@@ -2,9 +2,9 @@ using System.Linq;
 
 namespace MyUhuntCard.Views
 {
-    public class Card 
+    public class Card
     {
-        public string Svg = @"    <style>
+        public string Svg = @"<svg xmlns='http://www.w3.org/2000/svg' width='469' height='192' viewBox='0 0 467 195' fill='none' role='img' aria-labelledby='descId'> <style>
         @keyframes fadeInAnimation 
         {
             from 
@@ -30,6 +30,7 @@ namespace MyUhuntCard.Views
             left: 30px;   
             font-size: 18px;
             color: white;
+            fill: #fff;
             font-weight: 700;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             animation: fadeInAnimation 0.6s ease-in-out forwards;
@@ -39,6 +40,7 @@ namespace MyUhuntCard.Views
         {
             position: absolute;
             top: 60px;
+            fill: #fff;
             left: 170px;   
             font-size: 84px;
             color: #79FF97;
@@ -63,23 +65,17 @@ namespace MyUhuntCard.Views
             animation: blink 1s ease-in-out infinite;
         }
 
-    </style> 
-    ";
+    </style>";
         public string GetCard(string Accepted, string Username)
         {
-
             Svg += $@"
     <svg class='box' width='467' height='195' viewBox='0 0 467 195' fill='none' xmlns='http://www.w3.org/2000/svg'>
         <rect width='467' height='195' rx='8' fill='#151515'/>
     </svg>
     
     
-    <g xmlns='http://www.w3.org/2000/svg' data-testid='card-title' transform='translate(25, 35)'>
-        <g transform='translate(0, 0)'>
-            <text x='0' y='0' class='header' data-testid='header'>Accepted codes by {Username} on Uva Online Judge</text>
-        </g>
-    </g>
-    <svg class='logo' width='118' height='118' viewBox='0 0 118 118' fill='none' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+    
+    <svg class='logo' y='60' x='300' width='118' height='118' viewBox='0 0 118 118' fill='none' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
         <rect x='2' y='2' width='114' height='114' rx='57' fill='url(#pattern0_1_4)' stroke='#79FF97' stroke-width='4'/>
         <defs>
         <pattern id='pattern0_1_4' patternContentUnits='objectBoundingBox' width='1' height='1'>
@@ -89,16 +85,22 @@ namespace MyUhuntCard.Views
         </defs>
     </svg>
 
-    <svg class='terminal' width='80' height='80' viewBox='0 0 67 58' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg class='terminal' y='80' x='50' width='80' height='80' viewBox='0 0 67 58' fill='none' xmlns='http://www.w3.org/2000/svg'>
         <path d='M64.32 0H2.68C1.19762 0 0 1.03675 0 2.32V55.68C0 56.9632 1.19762 58 2.68 58H64.32C65.8024 58 67 56.9632 67 55.68V2.32C67 1.03675 65.8024 0 64.32 0ZM33.5921 29.4422L17.5121 41.1147C17.0766 41.4337 16.415 41.1655 16.415 40.6725V36.1267C16.415 35.96 16.5071 35.7932 16.6579 35.6845L24.7409 29.8089C25.2902 29.4095 25.2902 28.5905 24.7409 28.1911L16.6579 22.3155C16.5809 22.2629 16.5189 22.1956 16.4768 22.1189C16.4347 22.0422 16.4136 21.9582 16.415 21.8733V17.3275C16.415 16.8345 17.0766 16.5662 17.5121 16.8852L33.5921 28.5505C33.9187 28.7825 33.9187 29.2102 33.5921 29.4422ZM50.585 40.6725C50.585 40.9915 50.3003 41.2525 49.9569 41.2525H34.4631C34.1198 41.2525 33.835 40.9915 33.835 40.6725V37.1925C33.835 36.8735 34.1198 36.6125 34.4631 36.6125H49.9569C50.3003 36.6125 50.585 36.8735 50.585 37.1925V40.6725Z' fill='#79FF97'/>
     </svg>
         
     <g xmlns='http://www.w3.org/2000/svg' data-testid='card-title' transform='translate(25, 35)'>
         <g transform='translate(0, 0)'>
-            <text x='0' y='0' class='number' data-testid='number'>{Accepted}</text>
+            <text x='145' y='115' class='number' data-testid='number'>{Accepted}</text>
         </g>
-    </g>";
-            return Svg;
+    </g> 
+    <g xmlns='http://www.w3.org/2000/svg' data-testid='card-title' transform='translate(25, 35)'>
+        <g transform='translate(0, 0)'>
+            <text x='0' y='0' class='header' data-testid='header'>Accepted codes by {Username} on Uva Online Judge</text>
+        </g>
+    </g>    
+</svg>";
+            return Svg.Trim();
         }
     }
 }
