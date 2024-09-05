@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using MyUhuntCard.Models;
 using MyUhuntCard.Services;
+using MyUhuntCard.Views;
 
 namespace MyUhuntCard.Controllers
 {
@@ -17,13 +17,20 @@ namespace MyUhuntCard.Controllers
         }
 
         [HttpGet("{Username}")]
-        public async Task<Response<int>> GetUserIDAsync(string Username)
+        public async Task<ContentResult> GetUserIDAsync(string Username)
         {
-            UhuntAPI response = new UhuntAPI();
+            try
+            {
+                UhuntAPI response = new UhuntAPI();
 
-            string UserID = (await response.GetUserIDAsync(Username)).Value;
-
-            return await response.GetAcceptedAsync(UserID);
+                string UserID = (await response.GetUserIDAsync(Username)).Value;
+                Card myCard = new Card();
+                return base.Content(myCard.GetCard((await response.GetAcceptedAsync(UserID)).Value.ToString(), Username), "text/html");
+            }
+            catch
+            {
+                return base.Content("Ocorreu um erro", "text/plain");
+            }
         }
     }
 }
